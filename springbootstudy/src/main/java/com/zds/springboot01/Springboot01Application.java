@@ -4,14 +4,19 @@ import com.zds.springboot01.bean.User;
 import com.zds.springboot01.bean.UserEnableConfigurationProperties;
 import com.zds.springboot01.config.SpringConfig;
 import com.zds.springboot01.config.SpringConfig01;
-import com.zds.springboot01.service.TreeService  ;
+import com.zds.springboot01.service.TreeService;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ConfigurableApplicationContext;
+import org.springframework.context.annotation.ImportResource;
 
 import java.util.Arrays;
 
+/**
+ * ImportSource注解用于引入自定义的spring xml配置文件
+ */
 @SpringBootApplication
+@ImportResource(value = {"classpath:beans.xml"})
 public class Springboot01Application {
 
     public static void main(String[] args) {
@@ -42,6 +47,8 @@ public class Springboot01Application {
         UserEnableConfigurationProperties userEnableConfigurationProperties = applicationContext.getBean("third.user-com.zds.springboot01.bean.UserEnableConfigurationProperties", UserEnableConfigurationProperties.class);
         System.out.println(userEnableConfigurationProperties);
 
+        // 验证@@ImportResource注解是否成功引入beans.xml，如果成功，可以获取userBaseXml实例 --> true
+        System.out.println("是否成功注入userBaseXml: " + applicationContext.containsBean("userBaseXml"));
         String[] beanNamesForType1 = applicationContext.getBeanNamesForType(User.class);
 
         for (String s : beanNamesForType1) {
