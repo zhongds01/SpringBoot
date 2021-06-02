@@ -6,6 +6,7 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Import;
 import org.springframework.context.annotation.PropertySource;
 
 /**
@@ -14,6 +15,7 @@ import org.springframework.context.annotation.PropertySource;
 @Configuration
 @EnableConfigurationProperties(value = {UserEnableConfigurationProperties.class})
 @PropertySource(value = {"classpath:user.properties"}, encoding = "UTF-8")
+@Import(value= {User.class})
 public class SpringConfig {
 
     @Bean

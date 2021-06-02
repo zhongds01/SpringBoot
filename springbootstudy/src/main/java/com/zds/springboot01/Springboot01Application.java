@@ -4,7 +4,7 @@ import com.zds.springboot01.bean.User;
 import com.zds.springboot01.bean.UserEnableConfigurationProperties;
 import com.zds.springboot01.config.SpringConfig;
 import com.zds.springboot01.config.SpringConfig01;
-import com.zds.springboot01.service.TreeService;
+import com.zds.springboot01.service.TreeService  ;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ConfigurableApplicationContext;
@@ -41,6 +41,12 @@ public class Springboot01Application {
         // 验证@EnableConfigurationProperties与@ConfigurationProperties结合使用。不仅仅会将配置文件中属性绑定到类属性上，还会自动注入bean到容器中。bean的默认名称有点奇怪
         UserEnableConfigurationProperties userEnableConfigurationProperties = applicationContext.getBean("third.user-com.zds.springboot01.bean.UserEnableConfigurationProperties", UserEnableConfigurationProperties.class);
         System.out.println(userEnableConfigurationProperties);
+
+        String[] beanNamesForType1 = applicationContext.getBeanNamesForType(User.class);
+
+        for (String s : beanNamesForType1) {
+            System.out.println(s);
+        }
 
 
     }
